@@ -373,7 +373,11 @@ router.get('/questions/categories', async (req, res) => {
         });
     }
 });
-
+router.get('/test', async (req, res) => {
+        await res.json({
+            success: true
+        });
+})
 /*====================================
 | GET ALL QUESTION FROM THE SELECTED CATEGORIES
 */

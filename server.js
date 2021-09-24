@@ -313,9 +313,9 @@ websocketServer.on('connection', (socket, req) => {
 });
 
 // Start the server.
-const port = process.env.PORT || 3001;
+const port = 3001;
 httpServer.listen(port, () => {
-    mongoose.connect(`mongodb://${dbConfig.USERNAME}:${dbConfig.PASSWORD}@${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+    mongoose.connect(`mongodb://${dbConfig.USERNAME}:${dbConfig.PASSWORD}@${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}?authSource=admin`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     }, () => {
