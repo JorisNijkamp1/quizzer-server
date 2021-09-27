@@ -13,11 +13,10 @@ const app = express();
 app.use(cors({
     origin: true,
     credentials: true,
-    allowedHeaders: ["content-type"],
+    allowedHeaders: "*",
     methods: "*",
     exposedHeaders: "*",
-    optionsSuccessStatus: 200,
-    preflightContinue: true,
+    optionsSuccessStatus: 200
 }));
 // app.options("*", cors({
 //     origin: true,
