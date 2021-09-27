@@ -33,6 +33,13 @@ const httpServer = http.createServer(app);
 // Create the Web socket server.
 const websocketServer = new WebSocket.Server({noServer: true});
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    next();
+});
+
 // Require all RESTFULL API Routes
 app.use('/api', require('./routes/api-routes'));
 
