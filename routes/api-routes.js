@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
 require('../database/model/games');
 require('../database/model/questions');
+const cors = require("cors");
 const Games = mongoose.model("Games");
 const Questions = mongoose.model("Questions");
 
@@ -123,7 +124,7 @@ router.put('/games/:gameRoom/team/:teamName', async (req, res) => {
 /*====================================
 | CREATE A NEW GAMEROOM
 */
-router.post('/game', async (req, res) => {
+router.post('/game', cors(), async (req, res) => {
     //Game room name
     const gameRoomName = req.body.gameRoomName;
 
