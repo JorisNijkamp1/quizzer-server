@@ -15,7 +15,8 @@ app.options("*", cors({
     origin: true,
     credentials: true,
     allowedHeaders: "*",
-    methods: "*"
+    methods: "*",
+    preflightContinue: true
 }));
 
 // WebSocket server, to give socket-handlers access to the session.
