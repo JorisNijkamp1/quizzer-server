@@ -11,7 +11,7 @@ const app = express();
 
 // needed to make all requests from client work with this server.
 app.use(cors({origin: true, credentials: true}));
-app.options("*", cors({
+app.options("https://quizzer-client.jorisnijkamp.nl", cors({
     origin: true,
     credentials: true
 }));
