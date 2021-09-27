@@ -14,6 +14,8 @@ app.use(cors({origin: true, credentials: true, allowedHeaders: "*", methods: "*"
 app.options("*", cors({
     origin: true,
     credentials: true,
+    allowedHeaders: "*",
+    methods: "*"
 }));
 
 // WebSocket server, to give socket-handlers access to the session.
