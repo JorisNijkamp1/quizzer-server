@@ -11,7 +11,7 @@ const app = express();
 
 // needed to make all requests from client work with this server.
 app.use(cors({
-    origin: "https://quizzer-server.jorisnijkamp.nl/",
+    origin: "https://quizzer-server.jorisnijkamp.nl/api/game",
     credentials: true,
     allowedHeaders: "*",
     methods: "*",
