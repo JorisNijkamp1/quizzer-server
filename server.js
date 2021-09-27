@@ -11,13 +11,21 @@ const app = express();
 
 // needed to make all requests from client work with this server.
 app.use(cors({
-    origin: true,
-    credentials: true,
-    allowedHeaders: "*",
-    methods: "*",
-    exposedHeaders: "*",
-    optionsSuccessStatus: 200
+    // origin: 'http://localhost:3000',
+    origin: function(origin, callback){
+        return callback(null, true)
+    },
+    optionsSuccessStatus: 200,
+    credentials: true
 }));
+// app.use(cors({
+//     origin: true,
+//     credentials: true,
+//     allowedHeaders: "*",
+//     methods: "*",
+//     exposedHeaders: "*",
+//     optionsSuccessStatus: 200
+// }));
 // app.options("*", cors({
 //     origin: true,
 //     credentials: true,
