@@ -17,7 +17,7 @@ app.use(cors({
     methods: "*",
     exposedHeaders: "*",
     optionsSuccessStatus: 200,
-    preflightContinue: false,
+    preflightContinue: true,
 }));
 // app.options("*", cors({
 //     origin: true,
