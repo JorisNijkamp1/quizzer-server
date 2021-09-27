@@ -11,7 +11,7 @@ const app = express();
 
 // needed to make all requests from client work with this server.
 app.use(cors({
-    origin: "*",
+    origin: true,
     credentials: true,
     allowedHeaders: "*",
     methods: "*",
