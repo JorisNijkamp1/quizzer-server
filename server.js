@@ -10,7 +10,7 @@ const dbConfig = require('./config');
 const app = express();
 
 // needed to make all requests from client work with this server.
-app.use(cors({origin: true, credentials: true}));
+app.use(cors({origin: true, credentials: true, allowedHeaders: "*", methods: "*"}));
 app.options("*", cors({
     origin: true,
     credentials: true
