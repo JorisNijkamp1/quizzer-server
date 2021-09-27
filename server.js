@@ -10,13 +10,10 @@ const dbConfig = require('./config');
 const app = express();
 
 // needed to make all requests from client work with this server.
-app.use(cors({origin: true, credentials: true, allowedHeaders: "*", methods: "*"}));
+app.use(cors({origin: true, credentials: true}));
 app.options("*", cors({
     origin: true,
-    credentials: true,
-    allowedHeaders: "*",
-    methods: "*",
-    preflightContinue: true
+    credentials: true
 }));
 
 // WebSocket server, to give socket-handlers access to the session.
@@ -32,13 +29,6 @@ const httpServer = http.createServer(app);
 
 // Create the Web socket server.
 const websocketServer = new WebSocket.Server({noServer: true});
-
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "*");
-    res.header("Access-Control-Allow-Headers", "*");
-    next();
-});
 
 // Require all RESTFULL API Routes
 app.use('/api', require('./routes/api-routes'));
