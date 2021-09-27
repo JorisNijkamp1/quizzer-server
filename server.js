@@ -10,18 +10,11 @@ const dbConfig = require('./config');
 const app = express();
 
 // needed to make all requests from client work with this server.
-app.use(cors({
+app.use(cors({origin: true, credentials: true}));
+app.options("*", cors({
     origin: true,
-    credentials: true,
-    allowedHeaders: "*",
-    methods: "*",
-    exposedHeaders: "*",
-    optionsSuccessStatus: 200
+    credentials: true
 }));
-// app.options("*", cors({
-//     origin: true,
-//     credentials: true,
-// }));
 
 // WebSocket server, to give socket-handlers access to the session.
 const sessionParser = session({
