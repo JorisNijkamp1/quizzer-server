@@ -10,11 +10,22 @@ const dbConfig = require('./config');
 const app = express();
 
 // needed to make all requests from client work with this server.
-app.use(cors({origin: true, credentials: true}));
-app.options("https://quizzer-client.jorisnijkamp.nl", cors({
-    origin: true,
-    credentials: true
-}));
+// app.use(cors({origin: true, credentials: true}));
+// app.options("*", cors({
+//     origin: true,
+//     credentials: true
+// }));
+
+var allowlist = ['https://quizzer-client.jorisnijkamp.nl/']
+var corsOptionsDelegate = function (req, callback) {
+    var corsOptions;
+    if (allowlist.indexOf(req.header('Origin')) !== -1) {
+        corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+    } else {
+        corsOptions = { origin: false } // disable CORS for this request
+    }
+    callback(null, corsOptions) // callback expects two parameters: error and options
+}
 
 // WebSocket server, to give socket-handlers access to the session.
 const sessionParser = session({
@@ -22,7 +33,7 @@ const sessionParser = session({
     secret: 'DFJadslkfjgkf$%dfgjlsdg',
     resave: true
 });
-app.use(sessionParser);
+app.use(sessionParser, cors(corsOptionsDelegate));
 
 // Create HTTP server by ourselves, in order to attach websocket server.
 const httpServer = http.createServer(app);
