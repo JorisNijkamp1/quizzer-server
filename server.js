@@ -10,8 +10,12 @@ const dbConfig = require('./config');
 const app = express();
 
 // needed to make all requests from client work with this server.
-// app.use(cors({origin: true, credentials: true}));
-// app.options("quizzer-client.jorisnijkamp.nl", cors({
+app.use(cors({
+    origin: ['https://quizzer-client.jorisnijkamp.nl'],
+    credentials: true,
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}));
+// app.options("https://quizzer-client.jorisnijkamp.nl", cors({
 //     origin: true,
 //     credentials: true
 // }));
